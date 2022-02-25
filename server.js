@@ -13,7 +13,7 @@ server.use(jsonServer.bodyParser);
 
 server.use((req, res, next) => {
   if (req.method === "POST") {
-    req.body.createdAt = new Date().toISOString();
+    req.body.createdOn = new Date().toISOString();
     req.body.lastEditedOn = new Date().toISOString();
     req.body.updatedOn = new Date().toISOString();
     req.body.status = "Assigned to timeline";
@@ -36,14 +36,15 @@ server.use((req, res, next) => {
 
 router.render = (req, res) => {
   res.jsonp({
-    body: res.locals.data,
+    result: res.locals.data,
   });
 };
 
 // Use default router
 server.use(router);
-server.listen(3001, () => {
-  console.log("\x1b[32m", "JSON Server Running on PORT 3001");
+server.listen(3002, () => {
+  console.log("\x1b[32m", "JSON Server Running on PORT 3002");
   console.log("\x1b[32m", "--------------------------------");
-  console.log("\x1b[35m", "http://localhost:3001/recipe");
+  console.log("\x1b[35m", "http://localhost:3002/recipe");
+  console.log("\x1b[35m", "http://localhost:3002/inlets");
 });
